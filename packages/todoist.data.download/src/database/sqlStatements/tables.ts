@@ -1,4 +1,4 @@
-export const projectSql = `CREATE TABLE IF NOT EXISTS cacheProject (
+export const cacheProject = `CREATE TABLE IF NOT EXISTS cacheProject (
   [id] TEXT PRIMARY KEY,
   [parentId] TEXT NULL,
   [order] INTEGER NULL,
@@ -15,7 +15,7 @@ export const projectSql = `CREATE TABLE IF NOT EXISTS cacheProject (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const sectionSql = `CREATE TABLE IF NOT EXISTS cacheSection (
+export const cacheSection = `CREATE TABLE IF NOT EXISTS cacheSection (
   [id] TEXT PRIMARY KEY,
   [projectId] TEXT NULL,
   [order] INTEGER NULL,
@@ -24,7 +24,7 @@ export const sectionSql = `CREATE TABLE IF NOT EXISTS cacheSection (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const taskSql = `CREATE TABLE IF NOT EXISTS cacheTask (
+export const cacheTask = `CREATE TABLE IF NOT EXISTS cacheTask (
   [id] TEXT PRIMARY KEY,
   [assignerId] TEXT NULL,
   [assigneeId] TEXT NULL,
@@ -51,7 +51,7 @@ export const taskSql = `CREATE TABLE IF NOT EXISTS cacheTask (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const commentSql = `CREATE TABLE IF NOT EXISTS cacheComment (
+export const cacheComment = `CREATE TABLE IF NOT EXISTS cacheComment (
   [id] TEXT PRIMARY KEY,
   [content] TEXT NULL,
   [postedAt] TEXT NULL,
@@ -65,7 +65,7 @@ export const commentSql = `CREATE TABLE IF NOT EXISTS cacheComment (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const labelSql = `CREATE TABLE IF NOT EXISTS cacheLabel (
+export const cacheLabel = `CREATE TABLE IF NOT EXISTS cacheLabel (
   [id] TEXT PRIMARY KEY,
   [name] TEXT NULL,
   [color] TEXT NULL,

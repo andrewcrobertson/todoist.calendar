@@ -1,5 +1,5 @@
 import { Database } from 'better-sqlite3';
-import { commentSql, labelSql, projectSql, sectionSql, taskSql } from './sql';
+import { cacheComment, cacheLabel, cacheProject, cacheSection, cacheTask } from './sqlStatements/tables';
 
 export interface DbAccessOptions {
   database: Database;
@@ -17,11 +17,11 @@ export class DbAccess {
   private ensureDb() {
     if (this.dbCreated) return;
     const { database } = this.options;
-    database.prepare(projectSql).run();
-    database.prepare(sectionSql).run();
-    database.prepare(taskSql).run();
-    database.prepare(commentSql).run();
-    database.prepare(labelSql).run();
+    database.prepare(cacheProject).run();
+    database.prepare(cacheSection).run();
+    database.prepare(cacheTask).run();
+    database.prepare(cacheComment).run();
+    database.prepare(cacheLabel).run();
     this.dbCreated = true;
   }
 }
