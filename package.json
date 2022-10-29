@@ -1,0 +1,37 @@
+{
+  "name": "root",
+  "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "packages.*/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "check": "npm check -ws",
+    "ci:app.build": "npm run ci:build -w bjfc.app",
+    "ci:data.download": "npm run start -w bjfc.data.download",
+    "ci:data.etl": "npm run start -w bjfc.data.etl",
+    "dev": "npm run dev -w bjfc.app",
+    "format": "prettier --ignore-path .gitignore --ignore-path .prettierignore --write --plugin-search-dir=. .",
+    "githooks": "run-s githooks:*",
+    "githooks:01": "husky set .husky/pre-commit",
+    "githooks:02": "husky set .husky/pre-commit \"./node_modules/.bin/lint-staged\"",
+    "prepare": "husky install",
+    "test": "npm test -ws"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-packagejson": "^2.3.0",
+    "prettier-plugin-svelte": "^2.8.0",
+    "svelte": "^3.52.0"
+  }
+}

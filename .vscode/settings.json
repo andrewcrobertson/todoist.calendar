@@ -1,0 +1,32 @@
+{
+  // Hiding Unknown at-rule for tailwind https://github.com/tailwindlabs/tailwindcss/discussions/5258#discussioncomment-1979394
+  "css.lint.unknownAtRules": "ignore",
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "editor.tabSize": 2,
+  "files.exclude": {
+    // "**/.gitignore": true,
+    // "**/.svelte-kit": true,
+    // "**/build": true,
+    // "**/jest.config.cjs": true,
+    // "**/node_modules": true,
+    // "**/postcss.config.cjs": true,
+    // "**/svelte.config.js": true,
+    // "**/tailwind.config.cjs": true,
+    // "**/tsconfig.json": true,
+    // "**/webpack.config.js": true,
+    // ".czrc": true,
+    // ".gitattributes": true,
+    // ".github": true,
+    // ".husky": true,
+    // ".lintstagedrc.json": true,
+    // ".npmrc": true,
+    // ".prettierignore": true,
+    // ".prettierrc": true,
+    // "pnpm-lock.yaml": true
+  },
+  "workbench.editor.enablePreview": true
+}
