@@ -1,4 +1,4 @@
-import { Project } from '@doist/todoist-api-typescript';
+import { Label, Project, Section } from '@doist/todoist-api-typescript';
 import { boolToNumber } from './util';
 
 export class CacheMapper {
@@ -19,20 +19,13 @@ export class CacheMapper {
     };
   }
 
-  public mapLabel(project: Project) {
+  public mapLabel(label: Label) {
     return {
-      id: project.id,
-      parentId: project.parentId,
-      order: project.order,
-      color: project.color,
-      name: project.name,
-      commentCount: project.commentCount,
-      isShared: boolToNumber(project.isShared),
-      isFavorite: boolToNumber(project.isFavorite),
-      isInboxProject: boolToNumber(project.isInboxProject),
-      isTeamInbox: boolToNumber(project.isTeamInbox),
-      url: project.url,
-      viewStyle: project.viewStyle,
+      id: label.id,
+      order: label.order,
+      color: label.color,
+      name: label.name,
+      isFavorite: boolToNumber(label.isFavorite),
     };
   }
 
@@ -53,20 +46,12 @@ export class CacheMapper {
     };
   }
 
-  public mapSection(project: Project) {
+  public mapSection(project: Section) {
     return {
       id: project.id,
-      parentId: project.parentId,
+      projectId: project.projectId,
       order: project.order,
-      color: project.color,
       name: project.name,
-      commentCount: project.commentCount,
-      isShared: boolToNumber(project.isShared),
-      isFavorite: boolToNumber(project.isFavorite),
-      isInboxProject: boolToNumber(project.isInboxProject),
-      isTeamInbox: boolToNumber(project.isTeamInbox),
-      url: project.url,
-      viewStyle: project.viewStyle,
     };
   }
 

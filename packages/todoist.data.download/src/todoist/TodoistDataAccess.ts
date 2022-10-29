@@ -15,7 +15,7 @@ export class TodoistDataAccess {
 
   public async getLabels() {
     const { api } = this.options;
-    const rows = await api.getSharedLabels();
+    const rows = await api.getLabels();
     return rows;
   }
 

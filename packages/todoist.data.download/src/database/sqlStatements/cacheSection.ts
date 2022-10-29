@@ -6,48 +6,24 @@ SET [active] = @active,
 export const cacheSectionInsertSql = `
 INSERT INTO cacheSection (
   [id],
-  [parentId],
+  [projectId],
   [order],
-  [color],
   [name],
-  [commentCount],
-  [isShared],
-  [isFavorite],
-  [isInboxProject],
-  [isTeamInbox],
-  [url],
-  [viewStyle],
   [active],
   [activeCheckAt]
 )
 SELECT @id,
-  @parentId,
+  @projectId,
   @order,
-  @color,
   @name,
-  @commentCount,
-  @isShared,
-  @isFavorite,
-  @isInboxProject,
-  @isTeamInbox,
-  @url,
-  @viewStyle,
   @active,
   @activeCheckAt;`;
 
 export const cacheSectionUpdateSql = `
 UPDATE cacheSection
-SET [parentId] = @parentId,
+SET [projectId] = @projectId,
   [order] = @order,
-  [color] = @color,
   [name] = @name,
-  [commentCount] = @commentCount,
-  [isShared] = @isShared,
-  [isFavorite] = @isFavorite,
-  [isInboxProject] = @isInboxProject,
-  [isTeamInbox] = @isTeamInbox,
-  [url] = @url,
-  [viewStyle] = @viewStyle,
   [active] = @active,
   [activeCheckAt] = @activeCheckAt
 WHERE [id] = @id;`;

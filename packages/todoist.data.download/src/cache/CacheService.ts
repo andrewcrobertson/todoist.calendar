@@ -16,9 +16,9 @@ export class CacheService {
     const today = new Date().toISOString();
     await this.updateActive(today);
     // await this.cacheComments(today);
-    // await this.cacheLabels(today);
+    await this.cacheLabels(today);
     await this.cacheProjects(today);
-    // await this.cacheSections(today);
+    await this.cacheSections(today);
     // await this.cacheTasks(today);
   }
 
@@ -44,11 +44,11 @@ export class CacheService {
 
   private async cacheLabels(activeCheckAt: string) {
     const { dbAccess, cacheMapper, todoistDataAccess } = this.options;
-    const projects = await todoistDataAccess.getProjects();
-    for (let i = 0; i < projects.length; i++) {
-      const projectRaw = cacheMapper.mapProject(projects[i]);
-      const project = { ...projectRaw, active: boolToNumber(true), activeCheckAt };
-      dbAccess.cacheLabelUpsert(project);
+    const labels = await todoistDataAccess.getLabels();
+    for (let i = 0; i < labels.length; i++) {
+      const labelRaw = cacheMapper.mapLabel(labels[i]);
+      const label = { ...labelRaw, active: boolToNumber(true), activeCheckAt };
+      dbAccess.cacheLabelUpsert(label);
     }
   }
 
@@ -64,11 +64,11 @@ export class CacheService {
 
   private async cacheSections(activeCheckAt: string) {
     const { dbAccess, cacheMapper, todoistDataAccess } = this.options;
-    const projects = await todoistDataAccess.getProjects();
-    for (let i = 0; i < projects.length; i++) {
-      const projectRaw = cacheMapper.mapProject(projects[i]);
-      const project = { ...projectRaw, active: boolToNumber(true), activeCheckAt };
-      dbAccess.cacheSectionUpsert(project);
+    const sections = await todoistDataAccess.getSections();
+    for (let i = 0; i < sections.length; i++) {
+      const sectionRaw = cacheMapper.mapProject(sections[i]);
+      const section = { ...sectionRaw, active: boolToNumber(true), activeCheckAt };
+      dbAccess.cacheSectionUpsert(section);
     }
   }
 
