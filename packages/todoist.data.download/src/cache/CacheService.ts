@@ -26,10 +26,10 @@ export class CacheService {
     const { dbAccess } = this.options;
     const value = { active: boolToNumber(false), activeCheckAt };
     dbAccess.cacheCommentUpdateActiveSql(value);
-    dbAccess.cacheLabelUpdateActiveSql({ active: boolToNumber(false), activeCheckAt });
-    dbAccess.cacheProjectUpdateActiveSql({ active: boolToNumber(false), activeCheckAt });
-    dbAccess.cacheSectionUpdateActiveSql({ active: boolToNumber(false), activeCheckAt });
-    dbAccess.cacheTaskUpdateActiveSql({ active: boolToNumber(false), activeCheckAt });
+    dbAccess.cacheLabelUpdateActiveSql(value);
+    dbAccess.cacheProjectUpdateActiveSql(value);
+    dbAccess.cacheSectionUpdateActiveSql(value);
+    dbAccess.cacheTaskUpdateActiveSql(value);
   }
 
   private async cacheComments(activeCheckAt: string) {
