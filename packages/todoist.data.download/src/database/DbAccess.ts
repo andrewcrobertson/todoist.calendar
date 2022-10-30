@@ -1,10 +1,10 @@
 import { Database } from 'better-sqlite3';
-import { cacheCommentInsertSql, cacheCommentUpdateActiveSql, cacheCommentUpdateSql } from './sqlStatements/cacheComment';
-import { cacheLabelInsertSql, cacheLabelUpdateActiveSql, cacheLabelUpdateSql } from './sqlStatements/cacheLabel';
-import { cacheProjectInsertSql, cacheProjectUpdateActiveSql, cacheProjectUpdateSql } from './sqlStatements/cacheProject';
-import { cacheSectionInsertSql, cacheSectionUpdateActiveSql, cacheSectionUpdateSql } from './sqlStatements/cacheSection';
-import { cacheTaskInsertSql, cacheTaskUpdateActiveSql, cacheTaskUpdateSql } from './sqlStatements/cacheTask';
-import { cacheComment, cacheLabel, cacheProject, cacheSection, cacheTask } from './sqlStatements/tables';
+import { todoistComment, todoistLabel, todoistProject, todoistSection, todoistTask } from './sqlStatements/tables';
+import { todoistCommentInsertSql, todoistCommentUpdateActiveSql, todoistCommentUpdateSql } from './sqlStatements/todoistComment';
+import { todoistLabelInsertSql, todoistLabelUpdateActiveSql, todoistLabelUpdateSql } from './sqlStatements/todoistLabel';
+import { todoistProjectInsertSql, todoistProjectUpdateActiveSql, todoistProjectUpdateSql } from './sqlStatements/todoistProject';
+import { todoistSectionInsertSql, todoistSectionUpdateActiveSql, todoistSectionUpdateSql } from './sqlStatements/todoistSection';
+import { todoistTaskInsertSql, todoistTaskUpdateActiveSql, todoistTaskUpdateSql } from './sqlStatements/todoistTask';
 
 export interface DbAccessOptions {
   database: Database;
@@ -15,64 +15,64 @@ export class DbAccess {
 
   public constructor(private readonly options: DbAccessOptions) {}
 
-  public cacheCommentUpdateActiveSql(project: any) {
+  public todoistCommentUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(cacheCommentUpdateActiveSql, project);
+    this.updateActiveSql(todoistCommentUpdateActiveSql, project);
   }
 
-  public cacheCommentUpsert(project: any) {
+  public todoistCommentUpsert(project: any) {
     this.runMigrations();
-    this.upsert(cacheCommentUpdateSql, cacheCommentInsertSql, project);
+    this.upsert(todoistCommentUpdateSql, todoistCommentInsertSql, project);
   }
 
-  public cacheLabelUpdateActiveSql(project: any) {
+  public todoistLabelUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(cacheLabelUpdateActiveSql, project);
+    this.updateActiveSql(todoistLabelUpdateActiveSql, project);
   }
 
-  public cacheLabelUpsert(project: any) {
+  public todoistLabelUpsert(project: any) {
     this.runMigrations();
-    this.upsert(cacheLabelUpdateSql, cacheLabelInsertSql, project);
+    this.upsert(todoistLabelUpdateSql, todoistLabelInsertSql, project);
   }
 
-  public cacheProjectUpdateActiveSql(project: any) {
+  public todoistProjectUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(cacheProjectUpdateActiveSql, project);
+    this.updateActiveSql(todoistProjectUpdateActiveSql, project);
   }
 
-  public cacheProjectUpsert(project: any) {
+  public todoistProjectUpsert(project: any) {
     this.runMigrations();
-    this.upsert(cacheProjectUpdateSql, cacheProjectInsertSql, project);
+    this.upsert(todoistProjectUpdateSql, todoistProjectInsertSql, project);
   }
 
-  public cacheSectionUpdateActiveSql(project: any) {
+  public todoistSectionUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(cacheSectionUpdateActiveSql, project);
+    this.updateActiveSql(todoistSectionUpdateActiveSql, project);
   }
 
-  public cacheSectionUpsert(project: any) {
+  public todoistSectionUpsert(project: any) {
     this.runMigrations();
-    this.upsert(cacheSectionUpdateSql, cacheSectionInsertSql, project);
+    this.upsert(todoistSectionUpdateSql, todoistSectionInsertSql, project);
   }
 
-  public cacheTaskUpdateActiveSql(project: any) {
+  public todoistTaskUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(cacheTaskUpdateActiveSql, project);
+    this.updateActiveSql(todoistTaskUpdateActiveSql, project);
   }
 
-  public cacheTaskUpsert(project: any) {
+  public todoistTaskUpsert(project: any) {
     this.runMigrations();
-    this.upsert(cacheTaskUpdateSql, cacheTaskInsertSql, project);
+    this.upsert(todoistTaskUpdateSql, todoistTaskInsertSql, project);
   }
 
   public runMigrations() {
     if (this.migrationsRun) return;
     const { database } = this.options;
-    database.prepare(cacheProject).run();
-    database.prepare(cacheSection).run();
-    database.prepare(cacheTask).run();
-    database.prepare(cacheComment).run();
-    database.prepare(cacheLabel).run();
+    database.prepare(todoistProject).run();
+    database.prepare(todoistSection).run();
+    database.prepare(todoistTask).run();
+    database.prepare(todoistComment).run();
+    database.prepare(todoistLabel).run();
     this.migrationsRun = true;
   }
 

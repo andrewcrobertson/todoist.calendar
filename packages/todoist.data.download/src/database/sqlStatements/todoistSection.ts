@@ -1,10 +1,10 @@
-export const cacheSectionUpdateActiveSql = `
-UPDATE cacheSection
+export const todoistSectionUpdateActiveSql = `
+UPDATE todoistSection
 SET [active] = @active,
   [activeCheckAt] = @activeCheckAt;`;
 
-export const cacheSectionInsertSql = `
-INSERT INTO cacheSection (
+export const todoistSectionInsertSql = `
+INSERT INTO todoistSection (
   [id],
   [projectId],
   [order],
@@ -19,8 +19,8 @@ SELECT @id,
   @active,
   @activeCheckAt;`;
 
-export const cacheSectionUpdateSql = `
-UPDATE cacheSection
+export const todoistSectionUpdateSql = `
+UPDATE todoistSection
 SET [projectId] = @projectId,
   [order] = @order,
   [name] = @name,

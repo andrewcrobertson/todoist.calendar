@@ -1,10 +1,10 @@
-export const cacheTaskUpdateActiveSql = `
-UPDATE cacheTask
+export const todoistTaskUpdateActiveSql = `
+UPDATE todoistTask
 SET [active] = @active,
   [activeCheckAt] = @activeCheckAt;`;
 
-export const cacheTaskInsertSql = `
-INSERT INTO cacheTask (
+export const todoistTaskInsertSql = `
+INSERT INTO todoistTask (
   [id],
   [assignerId],
   [assigneeId],
@@ -55,8 +55,8 @@ SELECT @id,
   @active,
   @activeCheckAt;`;
 
-export const cacheTaskUpdateSql = `
-UPDATE cacheTask
+export const todoistTaskUpdateSql = `
+UPDATE todoistTask
 SET [assignerId] = @assignerId,
   [assigneeId] = @assigneeId,
   [projectId] = @projectId,

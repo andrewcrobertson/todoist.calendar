@@ -1,10 +1,10 @@
-export const cacheProjectUpdateActiveSql = `
-UPDATE cacheProject
+export const todoistProjectUpdateActiveSql = `
+UPDATE todoistProject
 SET [active] = @active,
   [activeCheckAt] = @activeCheckAt;`;
 
-export const cacheProjectInsertSql = `
-INSERT INTO cacheProject (
+export const todoistProjectInsertSql = `
+INSERT INTO todoistProject (
   [id],
   [parentId],
   [order],
@@ -35,8 +35,8 @@ SELECT @id,
   @active,
   @activeCheckAt;`;
 
-export const cacheProjectUpdateSql = `
-UPDATE cacheProject
+export const todoistProjectUpdateSql = `
+UPDATE todoistProject
 SET [parentId] = @parentId,
   [order] = @order,
   [color] = @color,

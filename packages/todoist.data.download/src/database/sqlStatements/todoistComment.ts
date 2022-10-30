@@ -1,10 +1,10 @@
-export const cacheCommentUpdateActiveSql = `
-UPDATE cacheComment
+export const todoistCommentUpdateActiveSql = `
+UPDATE todoistComment
 SET [active] = @active,
   [activeCheckAt] = @activeCheckAt;`;
 
-export const cacheCommentInsertSql = `
-INSERT INTO cacheComment (
+export const todoistCommentInsertSql = `
+INSERT INTO todoistComment (
   [id],
   [content],
   [postedAt],
@@ -29,8 +29,8 @@ SELECT @id,
   @active,
   @activeCheckAt;`;
 
-export const cacheCommentUpdateSql = `
-UPDATE cacheComment
+export const todoistCommentUpdateSql = `
+UPDATE todoistComment
 SET [content] = @content,
   [postedAt] = @postedAt,
   [projectId] = @projectId,

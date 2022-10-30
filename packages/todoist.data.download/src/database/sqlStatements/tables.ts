@@ -1,4 +1,4 @@
-export const cacheProject = `CREATE TABLE IF NOT EXISTS cacheProject (
+export const todoistProject = `CREATE TABLE IF NOT EXISTS todoistProject (
   [id] TEXT PRIMARY KEY,
   [parentId] TEXT NULL,
   [order] INTEGER NULL,
@@ -15,7 +15,7 @@ export const cacheProject = `CREATE TABLE IF NOT EXISTS cacheProject (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const cacheSection = `CREATE TABLE IF NOT EXISTS cacheSection (
+export const todoistSection = `CREATE TABLE IF NOT EXISTS todoistSection (
   [id] TEXT PRIMARY KEY,
   [projectId] TEXT NULL,
   [order] INTEGER NULL,
@@ -24,7 +24,7 @@ export const cacheSection = `CREATE TABLE IF NOT EXISTS cacheSection (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const cacheTask = `CREATE TABLE IF NOT EXISTS cacheTask (
+export const todoistTask = `CREATE TABLE IF NOT EXISTS todoistTask (
   [id] TEXT PRIMARY KEY,
   [assignerId] TEXT NULL,
   [assigneeId] TEXT NULL,
@@ -51,7 +51,7 @@ export const cacheTask = `CREATE TABLE IF NOT EXISTS cacheTask (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const cacheComment = `CREATE TABLE IF NOT EXISTS cacheComment (
+export const todoistComment = `CREATE TABLE IF NOT EXISTS todoistComment (
   [id] TEXT PRIMARY KEY,
   [content] TEXT NULL,
   [postedAt] TEXT NULL,
@@ -65,7 +65,7 @@ export const cacheComment = `CREATE TABLE IF NOT EXISTS cacheComment (
   [activeCheckAt] TEXT NULL
 );`;
 
-export const cacheLabel = `CREATE TABLE IF NOT EXISTS cacheLabel (
+export const todoistLabel = `CREATE TABLE IF NOT EXISTS todoistLabel (
   [id] TEXT PRIMARY KEY,
   [name] TEXT NULL,
   [color] TEXT NULL,

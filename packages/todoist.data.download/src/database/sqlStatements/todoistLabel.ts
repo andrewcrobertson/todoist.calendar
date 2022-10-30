@@ -1,10 +1,10 @@
-export const cacheLabelUpdateActiveSql = `
-UPDATE cacheLabel
+export const todoistLabelUpdateActiveSql = `
+UPDATE todoistLabel
 SET [active] = @active,
   [activeCheckAt] = @activeCheckAt;`;
 
-export const cacheLabelInsertSql = `
-INSERT INTO cacheLabel (
+export const todoistLabelInsertSql = `
+INSERT INTO todoistLabel (
   [id],
   [order],
   [color],
@@ -21,8 +21,8 @@ SELECT @id,
   @active,
   @activeCheckAt;`;
 
-export const cacheLabelUpdateSql = `
-UPDATE cacheLabel
+export const todoistLabelUpdateSql = `
+UPDATE todoistLabel
 SET [order] = @order,
   [color] = @color,
   [name] = @name,
