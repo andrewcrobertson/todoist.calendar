@@ -19,7 +19,7 @@ export class CacheService {
     await this.cacheLabels(today);
     await this.cacheProjects(today);
     await this.cacheSections(today);
-    // await this.cacheTasks(today);
+    await this.cacheTasks(today);
   }
 
   private async updateActive(activeCheckAt: string) {
@@ -32,13 +32,13 @@ export class CacheService {
     dbAccess.cacheTaskUpdateActiveSql(value);
   }
 
-  private async cacheComments(activeCheckAt: string) {
+  private async cacheComments(activeCheckAt: string, taskId: string) {
     const { dbAccess, cacheMapper, todoistDataAccess } = this.options;
-    const projects = await todoistDataAccess.getProjects();
-    for (let i = 0; i < projects.length; i++) {
-      const projectRaw = cacheMapper.mapProject(projects[i]);
-      const project = { ...projectRaw, active: boolToNumber(true), activeCheckAt };
-      dbAccess.cacheCommentUpsert(project);
+    const comments = await todoistDataAccess.getComments(taskId);
+    for (let i = 0; i < comments.length; i++) {
+      const commentRaw = cacheMapper.mapComment(comments[i]);
+      const comment = { ...commentRaw, active: boolToNumber(true), activeCheckAt };
+      dbAccess.cacheCommentUpsert(comment);
     }
   }
 
@@ -74,11 +74,14 @@ export class CacheService {
 
   private async cacheTasks(activeCheckAt: string) {
     const { dbAccess, cacheMapper, todoistDataAccess } = this.options;
-    const projects = await todoistDataAccess.getProjects();
-    for (let i = 0; i < projects.length; i++) {
-      const projectRaw = cacheMapper.mapProject(projects[i]);
-      const project = { ...projectRaw, active: boolToNumber(true), activeCheckAt };
-      dbAccess.cacheTaskUpsert(project);
+    const tasks = await todoistDataAccess.getTasks();
+    for (let i = 0; i < tasks.length; i++) {
+      const taskRaw = cacheMapper.mapTask(tasks[i]);
+      const task = { ...taskRaw, active: boolToNumber(true), activeCheckAt };
+      dbAccess.cacheTaskUpsert(task);
+      if (task.commentCount > 0) {
+        this.cacheComments(activeCheckAt, task.id);
+      }
     }
   }
 }
