@@ -17,6 +17,7 @@
     "**/svelte.config.js": true,
     // "**/tailwind.config.cjs": true,
     "**/tsconfig.json": true,
+    "**/vite.config.ts": true,
     ".czrc": true,
     ".gitattributes": true,
     // ".github": true,
