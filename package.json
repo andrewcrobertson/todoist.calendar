@@ -9,8 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:calendar.ui": "pnpm --filter @robertson/calendar.ui dev",
-    "dev:data.download": "pnpm --filter @robertson/data.download dev",
+    "dev:calendar.app": "pnpm --filter @robertson/calendar.app dev",
+    "dev:calendar.data": "pnpm --filter @robertson/calendar.data dev",
     "format": "prettier --ignore-path .gitignore --ignore-path .prettierignore --write --plugin-search-dir=. .",
     "githooks": "run-s githooks:*",
     "githooks:01": "husky set .husky/pre-commit",
