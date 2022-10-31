@@ -11,7 +11,6 @@ export class ApiService {
 	public getInitialData(year: number, month: number) {
 		const rows = this.options.dataAccess.getEntries(year, month);
 		const initialData = toInitialData({ year, month, rows });
-		console.log('...', initialData);
 		return initialData;
 	}
 }

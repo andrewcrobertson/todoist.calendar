@@ -1,5 +1,5 @@
-import { getDaysInMonth } from 'date-fns';
-import { filter, map, orderBy } from 'lodash';
+import { addMonths, getDaysInMonth } from 'date-fns';
+import { filter, map, orderBy, padStart } from 'lodash';
 
 const monthMap = {
 	1: 'January',
@@ -19,21 +19,28 @@ const monthMap = {
 export const toInitialData = (input: any) => {
 	const { year, month, rows } = input;
 	const monthName = (<any>monthMap)[month];
-	const daysInMonth = getDaysInMonth(new Date(year, month - 1));
+	const midMonth = new Date(year, month - 1, 15);
+	const daysInMonth = getDaysInMonth(midMonth);
 
-	const entries = [];
-	for (let i = 1; i <= daysInMonth; i++) {
-		const dayEntriesFiltered = filter(rows, (r) => r.day === i);
-		const dayEntriesMapped = map(dayEntriesFiltered, ({ time, text }) => ({ time, text }));
-		const dayEntries = orderBy(dayEntriesMapped, ['time', 'text']);
-		entries.push({ day: i, entries: dayEntries });
+	const prevMonth = addMonths(midMonth, -1);
+	const nextMonth = addMonths(midMonth, 1);
+
+	const previous = {
+		year: prevMonth.getFullYear(),
+		month: padStart((prevMonth.getMonth() + 1).toString(), 2, '0')
+	};
+	const next = {
+		year: nextMonth.getFullYear(),
+		month: padStart((nextMonth.getMonth() + 1).toString(), 2, '0')
+	};
+
+	const days = [];
+	for (let value = 1; value <= daysInMonth; value++) {
+		const entriesFiltered = filter(rows, (r) => r.day === value);
+		const entriesMapped = map(entriesFiltered, ({ time, text }) => ({ time, text }));
+		const entries = orderBy(entriesMapped, ['time', 'text']);
+		days.push({ value, entries });
 	}
 
-	return {
-		title: {
-			month: monthName,
-			year: year.toString()
-		},
-		entries
-	};
+	return { title: { month: monthName, year: year.toString() }, previous, next, days };
 };
