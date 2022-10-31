@@ -1,5 +1,5 @@
 import { Comment, Label, Project, Section, Task } from '@doist/todoist-api-typescript';
-import { boolToNumber } from './util';
+import { boolToNumber } from '../utils';
 
 export class SyncMapper {
   public mapComment(comment: Comment) {

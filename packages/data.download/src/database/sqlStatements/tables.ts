@@ -6,7 +6,8 @@ export const calendar = `CREATE TABLE IF NOT EXISTS calendar (
   [date] TEXT NULL,
   [time] TEXT NULL,
   [taskId] TEXT NULL,
-  [text] TEXT NULL
+  [text] TEXT NULL,
+  [show] INTEGER NULL
 );`;
 
 export const memoRecurringTaskDate = `CREATE TABLE IF NOT EXISTS memoRecurringTaskDate (

@@ -1,10 +1,12 @@
 import { Task } from '@doist/todoist-api-typescript';
 import { compact, first, get, includes, isNil, last, split } from 'lodash';
-import { DbAccess } from 'src/database/DbAccess';
-import { TodoistDataAccess } from 'src/todoist/TodoistDataAccess';
+import { DbAccess } from '../database/DbAccess';
+import { TodoistDataAccess } from '../todoist/TodoistDataAccess';
+import { boolToNumber } from '../utils';
 import { isValidTask, parseDate } from './utils';
 
 export interface CalendarServiceOptions {
+  calendarLabel: string;
   todoistDataAccess: TodoistDataAccess;
   dbAccess: DbAccess;
 }
@@ -31,13 +33,14 @@ export class CalendarService {
   }
 
   private async processTask(task: Task, fromDate: string, toDate: string) {
-    const { dbAccess } = this.options;
+    const { dbAccess, calendarLabel } = this.options;
 
     if (!isValidTask(task, fromDate, toDate)) return;
     const taskDates = await this.getTaskDates(task, toDate);
     for (let i = 0; i < taskDates.length; i++) {
       const { year, month, day, date, time } = parseDate(taskDates[i]);
-      const entry = { year, month, day, date, time, taskId: task.id, text: task.content };
+      const show = boolToNumber(includes(task.labels, calendarLabel));
+      const entry = { year, month, day, date, time, taskId: task.id, text: task.content, show };
       dbAccess.calendarInsert(entry);
     }
   }

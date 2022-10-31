@@ -1,7 +1,7 @@
-import { DbAccess } from 'src/database/DbAccess';
-import { TodoistDataAccess } from 'src/todoist/TodoistDataAccess';
+import { DbAccess } from '../database/DbAccess';
+import { TodoistDataAccess } from '../todoist/TodoistDataAccess';
+import { boolToNumber } from '../utils';
 import { SyncMapper } from './SyncMapper';
-import { boolToNumber } from './util';
 
 export interface SyncServiceOptions {
   dbAccess: DbAccess;

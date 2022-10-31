@@ -10,7 +10,8 @@ INSERT INTO calendar (
   [date],
   [time],
   [taskId],
-  [text]
+  [text],
+  [show]
 )
 SELECT @year,
   @month,
@@ -18,4 +19,5 @@ SELECT @year,
   @date,
   @time,
   @taskId,
-  @text;`;
+  @text,
+  @show;`;
