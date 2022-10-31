@@ -1,4 +1,4 @@
-import { TodoistApi } from '@doist/todoist-api-typescript';
+import { Task, TodoistApi } from '@doist/todoist-api-typescript';
 
 export interface TodoistDataAccessOptions {
   api: TodoistApi;
@@ -35,5 +35,29 @@ export class TodoistDataAccess {
     const { api } = this.options;
     const rows = await api.getTasks();
     return rows;
+  }
+
+  public async addTask(task: Task) {
+    const { api } = this.options;
+    const rows = await api.addTask(task);
+    return rows;
+  }
+
+  public async closeTask(id: string) {
+    const { api } = this.options;
+    const closed = await api.closeTask(id);
+    return closed;
+  }
+
+  public async getTask(id: string) {
+    const { api } = this.options;
+    const task = await api.getTask(id);
+    return task;
+  }
+
+  public async deleteTask(id: string) {
+    const { api } = this.options;
+    const deleted = await api.deleteTask(id);
+    return deleted;
   }
 }

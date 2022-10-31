@@ -1,3 +1,22 @@
+export const calendar = `CREATE TABLE IF NOT EXISTS calendar (
+  [id] INTEGER PRIMARY KEY AUTOINCREMENT,
+  [year] INTEGER NULL,
+  [month] INTEGER NULL,
+  [day] INTEGER NULL,
+  [date] TEXT NULL,
+  [time] TEXT NULL,
+  [taskId] TEXT NULL,
+  [text] TEXT NULL
+);`;
+
+export const memoRecurringTaskDate = `CREATE TABLE IF NOT EXISTS memoRecurringTaskDate (
+  [id] INTEGER PRIMARY KEY AUTOINCREMENT,
+  [taskId] TEXT NULL,
+  [dueString] TEXT NULL,
+  [currentDate] TEXT NULL,
+  [nextDate] TEXT NULL
+);`;
+
 export const todoistProject = `CREATE TABLE IF NOT EXISTS todoistProject (
   [id] TEXT PRIMARY KEY,
   [parentId] TEXT NULL,

@@ -1,5 +1,12 @@
 import { Database } from 'better-sqlite3';
-import { todoistComment, todoistLabel, todoistProject, todoistSection, todoistTask } from './sqlStatements/tables';
+import { calendarDeleteSql, calendarInsertSql } from './sqlStatements/calendar';
+import {
+  memoRecurringTaskDateDeleteSql,
+  memoRecurringTaskDateInsertSql,
+  memoRecurringTaskDateSelectSql,
+  memoRecurringTaskDateUpdateSql,
+} from './sqlStatements/memoRecurringTaskDate';
+import { calendar, memoRecurringTaskDate, todoistComment, todoistLabel, todoistProject, todoistSection, todoistTask } from './sqlStatements/tables';
 import { todoistCommentInsertSql, todoistCommentUpdateActiveSql, todoistCommentUpdateSql } from './sqlStatements/todoistComment';
 import { todoistLabelInsertSql, todoistLabelUpdateActiveSql, todoistLabelUpdateSql } from './sqlStatements/todoistLabel';
 import { todoistProjectInsertSql, todoistProjectUpdateActiveSql, todoistProjectUpdateSql } from './sqlStatements/todoistProject';
@@ -15,9 +22,35 @@ export class DbAccess {
 
   public constructor(private readonly options: DbAccessOptions) {}
 
+  public calendarDelete(afterDate: string) {
+    this.runMigrations();
+    this.runSql(calendarDeleteSql, { afterDate });
+  }
+
+  public calendarInsert(value: any) {
+    this.runMigrations();
+    this.runSql(calendarInsertSql, value);
+  }
+
+  public memoRecurringTaskDateDelete(value: any) {
+    this.runMigrations();
+    this.runSql(memoRecurringTaskDateDeleteSql, value);
+  }
+
+  public memoRecurringTaskDateSelect(value: any) {
+    this.runMigrations();
+    const rows = this.allSql(memoRecurringTaskDateSelectSql, value);
+    return rows.length === 0 ? null : rows[0];
+  }
+
+  public memoRecurringTaskDateUpsert(value: any) {
+    this.runMigrations();
+    this.upsert(memoRecurringTaskDateUpdateSql, memoRecurringTaskDateInsertSql, value);
+  }
+
   public todoistCommentUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(todoistCommentUpdateActiveSql, project);
+    this.runSql(todoistCommentUpdateActiveSql, project);
   }
 
   public todoistCommentUpsert(project: any) {
@@ -27,7 +60,7 @@ export class DbAccess {
 
   public todoistLabelUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(todoistLabelUpdateActiveSql, project);
+    this.runSql(todoistLabelUpdateActiveSql, project);
   }
 
   public todoistLabelUpsert(project: any) {
@@ -37,7 +70,7 @@ export class DbAccess {
 
   public todoistProjectUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(todoistProjectUpdateActiveSql, project);
+    this.runSql(todoistProjectUpdateActiveSql, project);
   }
 
   public todoistProjectUpsert(project: any) {
@@ -47,7 +80,7 @@ export class DbAccess {
 
   public todoistSectionUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(todoistSectionUpdateActiveSql, project);
+    this.runSql(todoistSectionUpdateActiveSql, project);
   }
 
   public todoistSectionUpsert(project: any) {
@@ -57,7 +90,7 @@ export class DbAccess {
 
   public todoistTaskUpdateActiveSql(project: any) {
     this.runMigrations();
-    this.updateActiveSql(todoistTaskUpdateActiveSql, project);
+    this.runSql(todoistTaskUpdateActiveSql, project);
   }
 
   public todoistTaskUpsert(project: any) {
@@ -68,6 +101,8 @@ export class DbAccess {
   public runMigrations() {
     if (this.migrationsRun) return;
     const { database } = this.options;
+    database.prepare(memoRecurringTaskDate).run();
+    database.prepare(calendar).run();
     database.prepare(todoistProject).run();
     database.prepare(todoistSection).run();
     database.prepare(todoistTask).run();
@@ -76,16 +111,22 @@ export class DbAccess {
     this.migrationsRun = true;
   }
 
-  private updateActiveSql(updateSql: string, value: any) {
+  private runSql(sql: string, value: any) {
     const { database } = this.options;
-    database.prepare(updateSql).run(value);
+    const result = database.prepare(sql).run(value);
+    return result;
+  }
+
+  private allSql(sql: string, value: any) {
+    const { database } = this.options;
+    const result = database.prepare(sql).all(value);
+    return result;
   }
 
   private upsert(updateSql: string, insertSql: string, value: any) {
-    const { database } = this.options;
-    const { changes } = database.prepare(updateSql).run(value);
+    const { changes } = this.runSql(updateSql, value);
     if (changes === 0) {
-      database.prepare(insertSql).run(value);
+      this.runSql(insertSql, value);
     }
   }
 }

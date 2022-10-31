@@ -1,7 +1,7 @@
 import { Comment, Label, Project, Section, Task } from '@doist/todoist-api-typescript';
 import { boolToNumber } from './util';
 
-export class CacheMapper {
+export class SyncMapper {
   public mapComment(comment: Comment) {
     return {
       id: comment.id,
