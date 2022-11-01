@@ -1,5 +1,5 @@
 import { addMonths, getDaysInMonth } from 'date-fns';
-import { filter, map, orderBy, padStart } from 'lodash';
+import { filter, map, orderBy, padStart } from 'lodash-es';
 
 const monthMap = {
   1: 'January',

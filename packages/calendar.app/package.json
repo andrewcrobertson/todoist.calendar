@@ -15,13 +15,14 @@
   "dependencies": {
     "better-sqlite3": "^7.6.2",
     "date-fns": "^2.29.3",
-    "lodash": "^4.17.21"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
     "@types/better-sqlite3": "^7.6.2",
     "@types/lodash": "^4.14.186",
+    "@types/lodash-es": "^4.17.6",
     "prettier": "^2.7.1",
     "prettier-plugin-svelte": "^2.8.0",
     "svelte": "^3.52.0",

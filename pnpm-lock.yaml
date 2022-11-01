@@ -31,9 +31,10 @@ importers:
       '@sveltejs/kit': next
       '@types/better-sqlite3': ^7.6.2
       '@types/lodash': ^4.14.186
+      '@types/lodash-es': ^4.17.6
       better-sqlite3: ^7.6.2
       date-fns: ^2.29.3
-      lodash: ^4.17.21
+      lodash-es: ^4.17.21
       prettier: ^2.7.1
       prettier-plugin-svelte: ^2.8.0
       svelte: ^3.52.0
@@ -43,12 +44,13 @@ importers:
       typescript: ^4.8.4
       vite: ^3.2.2
     dependencies:
+      '@types/lodash-es': 4.17.6
       better-sqlite3: 7.6.2
       date-fns: 2.29.3
-      lodash: 4.17.21
+      lodash-es: 4.17.21
     devDependencies:
       '@sveltejs/adapter-static': 1.0.0-next.47
-      '@sveltejs/kit': 1.0.0-next.529_svelte@3.52.0+vite@3.2.2
+      '@sveltejs/kit': 1.0.0-next.531_svelte@3.52.0+vite@3.2.2
       '@types/better-sqlite3': 7.6.2
       '@types/lodash': 4.14.186
       prettier: 2.7.1
@@ -271,8 +273,8 @@ packages:
     resolution: {integrity: sha512-pYY9/FhJAIWB3BXnLoKXj5yMZjQjtD9ZsW8UOqKE51H5sbCNHu+wdBlh2CkW20ww4yhfYrlvLWioxij6DPRO9w==}
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.529_svelte@3.52.0+vite@3.2.2:
-    resolution: {integrity: sha512-wM9Y38m8GVNT2YDQo41XNNa55OwTiGE+4fEuuhQnQY4nOSihXGllPsdIulnVsrxcSw9jKLkzwJdFr+i2y2y+OQ==}
+  /@sveltejs/kit/1.0.0-next.531_svelte@3.52.0+vite@3.2.2:
+    resolution: {integrity: sha512-8uBJF5BweIFoyw+Kqv0jsDSfndNw2mTF222qi8rDuptOy7gjoWXYFy2F0kd8orNeZUnjFrHE+g/qDNHq7zzEJg==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
@@ -358,9 +360,14 @@ packages:
       '@types/node': 18.11.8
     dev: true
 
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+    dependencies:
+      '@types/lodash': 4.14.186
+    dev: false
+
   /@types/lodash/4.14.186:
     resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
-    dev: true
 
   /@types/minimatch/5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
@@ -1831,6 +1838,10 @@ packages:
       parse-json: 4.0.0
       pify: 3.0.0
       strip-bom: 3.0.0
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
 
   /lodash.map/4.6.0:
     resolution: {integrity: sha512-worNHGKLDetmcEYDvh2stPCrrQRkP20E4l0iIS7F8EvzMqBBi7ltvFN5m1HvTf1P7Jk1txKhvFcmYsCr8O2F1Q==}

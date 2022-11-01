@@ -17,6 +17,7 @@ export class CalendarService {
   public async update(fromDate: string, toDate: string) {
     await this.removeFutureEvents(fromDate);
     await this.processTasks(fromDate, toDate);
+    await this.removeFutureEvents(toDate);
   }
 
   private async removeFutureEvents(fromDate: string) {
