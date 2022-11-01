@@ -27,7 +27,7 @@ export const toInitialData = (input: any) => {
   for (let i = 0; i < 1000; i++) {
     const year = midMonth.getFullYear();
     const month = midMonth.getMonth() + 1;
-    const url = `/page/${year.toString()}/${padStart(month.toString(), 2, '0')}`;
+    const url = `/${year.toString()}/${padStart(month.toString(), 2, '0')}`;
     const text = `${year.toString()} ${(<any>monthMap)[month]}`;
     output.push({ url, text });
     midMonth = addMonths(midMonth, 1);
