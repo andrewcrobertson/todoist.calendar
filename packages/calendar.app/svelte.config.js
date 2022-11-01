@@ -9,6 +9,7 @@ const config = {
 
   kit: {
     adapter: adapter(),
+    paths: { base: '/andrewcrobertson.github.io' },
   },
 };
 
