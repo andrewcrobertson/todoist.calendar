@@ -1,0 +1,43 @@
+name: sync-data
+on:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/ (At 00:00).
+    - cron: '0 0 * * *'
+
+jobs:
+  release:
+    name: sync-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install pnpm
+        run: npm i pnpm@latest -g
+
+      - name: Setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Sync Data
+        env:
+          NODE_ENV: production
+          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
+          TODOIST_AUTH_TOKEN: ${{ secrets.TODOIST_AUTH_TOKEN }}
+          SETTINGS_MONTHS: ${{ secrets.SETTINGS_MONTHS }}
+          SETTINGS_CALENDAR_LABEL: ${{ secrets.SETTINGS_CALENDAR_LABEL }}
+        run: pnpm run start:calendar.data
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: sync data'
