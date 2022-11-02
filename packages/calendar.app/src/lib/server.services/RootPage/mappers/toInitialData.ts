@@ -29,6 +29,7 @@ export const toInitialData = (input: any) => {
     year: prevMonth.getFullYear(),
     month: padStart((prevMonth.getMonth() + 1).toString(), 2, '0'),
   };
+
   const next = {
     year: nextMonth.getFullYear(),
     month: padStart((nextMonth.getMonth() + 1).toString(), 2, '0'),
