@@ -3,7 +3,7 @@ import { compact, first, get, includes, isNil, last, split } from 'lodash';
 import { DbAccess } from '../database/DbAccess';
 import { TodoistDataAccess } from '../todoist/TodoistDataAccess';
 import { boolToNumber } from '../utils';
-import { isValidTask, parseDate } from './utils';
+import { dummyTaskText, isValidTask, parseDate } from './utils';
 
 export interface CalendarServiceOptions {
   calendarLabel: string;
@@ -111,8 +111,8 @@ export class CalendarService {
 
     const includesTime = includes(currentDate, 'T');
     const dummyTask = await todoistDataAccess.addTask({
-      content: `Dummy Task - ${task.content}`,
-      description: 'Dummy Task',
+      content: `${dummyTaskText} - ${task.content}`,
+      description: dummyTaskText,
       dueString: task.due?.string,
       dueLang: get(task, ['due', 'lang'], 'en'),
       dueDate: first(split(currentDate, 'T')),

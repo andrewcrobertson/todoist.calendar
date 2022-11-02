@@ -1,6 +1,8 @@
 import { Task } from '@doist/todoist-api-typescript';
 import { addMonths, format } from 'date-fns';
-import { isNil, split } from 'lodash';
+import { isNil, split, startsWith } from 'lodash';
+
+export const dummyTaskText = 'Dummy Task';
 
 type nilString = string | null | undefined;
 
@@ -34,6 +36,8 @@ export const getDateRange = (months: number) => {
 };
 
 export const isValidTask = (task: Task, fromDate: string, toDate: string) => {
+  if (startsWith(task.content, dummyTaskText)) return false;
+  if (task.description === dummyTaskText) return false;
   if (task.isCompleted) return false;
   if (isNil(task.due)) return false;
   if (task.due.date < fromDate) return false;
