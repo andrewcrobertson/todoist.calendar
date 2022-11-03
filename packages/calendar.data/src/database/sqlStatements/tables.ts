@@ -1,5 +1,6 @@
 export const calendar = `CREATE TABLE IF NOT EXISTS calendar (
   [id] INTEGER PRIMARY KEY AUTOINCREMENT,
+  [priority] INTEGER NULL,
   [year] INTEGER NULL,
   [month] INTEGER NULL,
   [day] INTEGER NULL,
