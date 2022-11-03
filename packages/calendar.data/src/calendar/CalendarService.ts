@@ -7,6 +7,7 @@ import { dummyTaskText, isValidTask, parseDate } from './utils';
 
 export interface CalendarServiceOptions {
   calendarLabel: string;
+  hideTimeLabel: string;
   todoistDataAccess: TodoistDataAccess;
   dbAccess: DbAccess;
 }
@@ -34,13 +35,15 @@ export class CalendarService {
   }
 
   private async processTask(task: Task, fromDate: string, toDate: string) {
-    const { dbAccess, calendarLabel } = this.options;
+    const { dbAccess, calendarLabel, hideTimeLabel } = this.options;
 
     if (!isValidTask(task, fromDate, toDate)) return;
     const taskDates = await this.getTaskDates(task, toDate);
     for (let i = 0; i < taskDates.length; i++) {
-      const { year, month, day, date, time } = parseDate(taskDates[i]);
+      const { year, month, day, date, time: timeRaw } = parseDate(taskDates[i]);
       const show = boolToNumber(includes(task.labels, calendarLabel));
+      const hideTime = includes(task.labels, hideTimeLabel);
+      const time = hideTime ? null : timeRaw;
       const entry = { year, month, day, date, time, taskId: task.id, text: task.content, show };
       dbAccess.calendarInsert(entry);
     }

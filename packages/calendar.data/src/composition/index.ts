@@ -8,12 +8,13 @@ import { SyncService } from '../sync/SyncService';
 import { TodoistDataAccess } from '../todoist/TodoistDataAccess';
 
 const calendarLabel = config.settings.calendarLabel;
+const hideTimeLabel = config.settings.hideTimeLabel;
 const api = new TodoistApi(config.todoist.authToken);
 const database = new Database(config.database.file);
 const dbAccess = new DbAccess({ database });
 const todoistDataAccess = new TodoistDataAccess({ api });
 const syncMapper = new SyncMapper();
 const syncService = new SyncService({ syncMapper, dbAccess, todoistDataAccess });
-const calendarService = new CalendarService({ calendarLabel, dbAccess, todoistDataAccess });
+const calendarService = new CalendarService({ calendarLabel, hideTimeLabel, dbAccess, todoistDataAccess });
 
 export { dbAccess, calendarService, syncService };
