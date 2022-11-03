@@ -44,7 +44,8 @@ export class CalendarService {
       const show = boolToNumber(includes(task.labels, calendarLabel));
       const hideTime = includes(task.labels, hideTimeLabel);
       const time = hideTime ? null : timeRaw;
-      const entry = { year, month, day, date, time, taskId: task.id, text: task.content, show };
+      const priority = this.getPriority(task.priority);
+      const entry = { priority, year, month, day, date, time, taskId: task.id, text: task.content, show };
       dbAccess.calendarInsert(entry);
     }
   }
@@ -123,5 +124,12 @@ export class CalendarService {
     });
 
     return dummyTask;
+  }
+
+  private getPriority(priority: number) {
+    if (priority === 4) return 1;
+    if (priority === 3) return 2;
+    if (priority === 2) return 3;
+    if (priority === 1) return 4;
   }
 }

@@ -4,6 +4,7 @@ WHERE [date] >= @afterDate;`;
 
 export const calendarInsertSql = `
 INSERT INTO calendar (
+  [priority],
   [year],
   [month],
   [day],
@@ -13,7 +14,8 @@ INSERT INTO calendar (
   [text],
   [show]
 )
-SELECT @year,
+SELECT @priority,
+  @year,
   @month,
   @day,
   @date,
