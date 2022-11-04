@@ -1,4 +1,5 @@
 import { Task } from '@doist/todoist-api-typescript';
+import { addDays, format } from 'date-fns';
 import { compact, first, get, includes, isNil, last, split } from 'lodash';
 import { DbAccess } from '../database/DbAccess';
 import { TodoistDataAccess } from '../todoist/TodoistDataAccess';
@@ -16,12 +17,13 @@ export class CalendarService {
   public constructor(private readonly options: CalendarServiceOptions) {}
 
   public async update(fromDate: string, toDate: string) {
-    await this.removeFutureEvents(fromDate);
+    const tomorrow = format(addDays(new Date(), 1), 'yyyy-MM-dd');
+    await this.removeEventsAfter(tomorrow);
     await this.processTasks(fromDate, toDate);
-    await this.removeFutureEvents(toDate);
+    await this.removeEventsAfter(toDate);
   }
 
-  private async removeFutureEvents(fromDate: string) {
+  private async removeEventsAfter(fromDate: string) {
     const { dbAccess } = this.options;
     dbAccess.calendarDelete(fromDate);
   }
