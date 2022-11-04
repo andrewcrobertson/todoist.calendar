@@ -23,3 +23,15 @@ SELECT @priority,
   @taskId,
   @text,
   @show;`;
+
+export const calendarUpdateSql = `
+UPDATE calendar
+SET [priority] = @priority,
+  [year] = @year,
+  [month] = @month,
+  [day] = @day,
+  [time] = @time,
+  [text] = @text,
+  [show] = @show
+WHERE [taskId] = @taskId
+  AND [date] = @date`;

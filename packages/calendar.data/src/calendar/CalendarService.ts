@@ -48,7 +48,7 @@ export class CalendarService {
       const time = hideTime ? null : timeRaw;
       const priority = this.getPriority(task.priority);
       const entry = { priority, year, month, day, date, time, taskId: task.id, text: task.content, show };
-      dbAccess.calendarInsert(entry);
+      dbAccess.calendarUpsert(entry);
     }
   }
 

@@ -1,5 +1,5 @@
 import { Database } from 'better-sqlite3';
-import { calendarDeleteSql, calendarInsertSql } from './sqlStatements/calendar';
+import { calendarDeleteSql, calendarInsertSql, calendarUpdateSql } from './sqlStatements/calendar';
 import {
   memoRecurringTaskDateDeleteSql,
   memoRecurringTaskDateInsertSql,
@@ -27,9 +27,9 @@ export class DbAccess {
     this.runSql(calendarDeleteSql, { afterDate });
   }
 
-  public calendarInsert(value: any) {
+  public calendarUpsert(value: any) {
     this.runMigrations();
-    this.runSql(calendarInsertSql, value);
+    this.upsert(calendarUpdateSql, calendarInsertSql, value);
   }
 
   public memoRecurringTaskDateDelete(value: any) {
