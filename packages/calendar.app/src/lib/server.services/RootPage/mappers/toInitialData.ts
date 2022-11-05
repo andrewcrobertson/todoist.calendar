@@ -40,7 +40,7 @@ export const toInitialData = (input: any) => {
     const entriesFiltered = filter(rows, (r) => r.day === value);
     const entriesMapped = map(entriesFiltered, ({ time, text }) => ({ time, text }));
     const entries = orderBy(entriesMapped, ['time', 'text']);
-    days.push({ value, entries });
+    if (entries.length > 0) days.push({ value, entries });
   }
 
   return { title: { month: monthName, year: year.toString() }, previous, next, days };
