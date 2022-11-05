@@ -14,7 +14,7 @@
 </script>
 
 <div class="flex mt-4">
-  <div class="p-2">
+  <div class="px-2 py-1">
     <div class="flex justify-center items-center w-6 h-6 rounded-full {colourClass} text-sm text-white font-medium">{value}</div>
   </div>
   <div class="flex-1">

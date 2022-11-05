@@ -32,4 +32,4 @@
   const imgUrl = getImageUrl(lowerCase(month));
 </script>
 
-<img class="h-40" src={imgUrl} alt={month} />
+<img class="h-40 mx-auto" src={imgUrl} alt={month} />
