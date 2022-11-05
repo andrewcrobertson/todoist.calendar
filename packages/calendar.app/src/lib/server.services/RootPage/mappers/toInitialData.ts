@@ -1,4 +1,4 @@
-import { addMonths, getDaysInMonth } from 'date-fns';
+import { addMonths, format, getDaysInMonth } from 'date-fns';
 import { filter, map, orderBy, padStart } from 'lodash-es';
 
 const monthMap = {
@@ -40,7 +40,8 @@ export const toInitialData = (input: any) => {
     const entriesFiltered = filter(rows, (r) => r.day === value);
     const entriesMapped = map(entriesFiltered, ({ time, text }) => ({ time, text }));
     const entries = orderBy(entriesMapped, ['time', 'text']);
-    days.push({ value, entries });
+    const dayName = format(new Date(year, month, value), 'EEEE');
+    days.push({ value, dayName, entries });
   }
 
   return { title: { month: monthName, year: year.toString() }, previous, next, days };

@@ -13,14 +13,14 @@
     </div>
     <div class="divide-y">
       {#each data.days1 as day}
-        <Day value={day.value} entries={day.entries} />
+        <Day value={day.value} dayName={day.dayName} entries={day.entries} />
       {/each}
     </div>
   </div>
   <div>
     <div class="divide-y">
       {#each data.days2 as day}
-        <Day value={day.value} entries={day.entries} />
+        <Day value={day.value} dayName={day.dayName} entries={day.entries} />
       {/each}
     </div>
   </div>
