@@ -5,14 +5,21 @@
   export let data: PageData;
 </script>
 
-<div class="grid grid-cols-2 w-595 mx-auto">
+<div class="grid grid-cols-2 w-21 mx-auto">
   <div>
     <h1 class="text-xl font-bold">{data.title.month} {data.title.year}</h1>
     <div class="">
       <Image month={data.title.month} />
     </div>
     <div class="divide-y">
-      {#each data.days as day}
+      {#each data.days1 as day}
+        <Day value={day.value} entries={day.entries} />
+      {/each}
+    </div>
+  </div>
+  <div>
+    <div class="divide-y">
+      {#each data.days2 as day}
         <Day value={day.value} entries={day.entries} />
       {/each}
     </div>
