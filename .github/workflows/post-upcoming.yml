@@ -1,0 +1,43 @@
+name: post-upcoming
+on:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/every-sunday (At 00:00 on Sunday).
+    - cron: '0 0 * * SUN'
+
+jobs:
+  release:
+    name: post-upcoming
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install pnpm
+        run: npm i pnpm@latest -g
+
+      - name: Setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Sync Data
+        env:
+          NODE_ENV: production
+          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SETTINGS_WEEKS: ${{ secrets.SETTINGS_WEEKS }}
+          SETTINGS_CHANNEL_ID: ${{ secrets.SETTINGS_CHANNEL_ID }}
+        run: pnpm run start:calendar.upcoming
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: post upcoming'
