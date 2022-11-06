@@ -12,12 +12,14 @@
     "build:calendar.app": "pnpm --filter @robertson/calendar.app build",
     "dev:calendar.app": "pnpm --filter @robertson/calendar.app dev",
     "dev:calendar.data": "pnpm --filter @robertson/calendar.data start",
+    "dev:calendar.upcoming": "pnpm --filter @robertson/calendar.upcoming dev",
     "format": "prettier --ignore-path .gitignore --ignore-path .prettierignore --write --plugin-search-dir=. .",
     "githooks": "run-s githooks:*",
     "githooks:01": "husky set .husky/pre-commit",
     "githooks:02": "husky set .husky/pre-commit \"./node_modules/.bin/lint-staged\"",
     "prepare": "husky install",
-    "start:calendar.data": "pnpm --filter @robertson/calendar.data start"
+    "start:calendar.data": "pnpm --filter @robertson/calendar.data start",
+    "start:calendar.upcoming": "pnpm --filter @robertson/calendar.upcoming start"
   },
   "dependencies": {
     "npm-run-all": "^4.1.5"
