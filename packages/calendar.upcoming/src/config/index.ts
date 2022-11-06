@@ -4,7 +4,7 @@ const dataPath = path.resolve(__dirname, '..', '..', '..', '__data');
 
 export const config = {
   settings: {
-    months: parseInt(process.env[`SETTINGS_WEEKS`], 10),
+    weeks: parseInt(process.env[`SETTINGS_WEEKS`], 10),
     channelId: process.env[`SETTINGS_CHANNEL_ID`],
   },
   slack: {

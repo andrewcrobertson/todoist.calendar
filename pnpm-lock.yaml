@@ -71,7 +71,6 @@ importers:
   packages/calendar.data:
     specifiers:
       '@doist/todoist-api-typescript': ^2.1.0
-      '@slack/web-api': ^6.7.2
       '@types/better-sqlite3': ^7.6.2
       '@types/lodash': ^4.14.186
       '@types/node': ^18.11.8
@@ -84,7 +83,6 @@ importers:
       typescript: ^4.8.4
     dependencies:
       '@doist/todoist-api-typescript': 2.1.0
-      '@slack/web-api': 6.7.2
       better-sqlite3: 7.6.2
       date-fns: 2.29.3
       dotenv: 16.0.3
