@@ -41,7 +41,7 @@ export class UpcomingMapper {
     const year = parseInt(tokens[0]);
     const month = parseInt(tokens[1]) - 1;
     const day = parseInt(tokens[2]);
-    const formattedDate = format(new Date(year, month, day), 'cccc dd MMM');
+    const formattedDate = format(new Date(year, month, day), 'cccc MMM d');
     return formattedDate;
   }
 
