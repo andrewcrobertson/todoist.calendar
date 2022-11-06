@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { filter, join, map, orderBy, padStart, split } from 'lodash';
+import { filter, join, map, orderBy, split } from 'lodash';
 
 export class UpcomingMapper {
   public toMessage(rows: any[]) {
@@ -48,7 +48,7 @@ export class UpcomingMapper {
   private formatTime(time: string) {
     const tokens = split(time, ':');
     const hoursRaw = parseInt(tokens[0]);
-    const hours = hoursRaw > 12 ? padStart((hoursRaw - 12).toString(), 2, '0') : hoursRaw;
+    const hours = hoursRaw > 12 ? hoursRaw - 12 : hoursRaw;
     const minutes = tokens[1];
     const suffix = hoursRaw >= 12 ? 'pm' : 'am';
     const formattedTime = `${hours}:${minutes}${suffix}`;
