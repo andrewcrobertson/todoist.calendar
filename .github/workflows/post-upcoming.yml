@@ -2,8 +2,8 @@ name: post-upcoming
 on:
   workflow_dispatch:
   schedule:
-    # https://crontab.guru/every-sunday (At 00:00 on Sunday).
-    - cron: '0 0 * * *'
+    # https://crontab.guru/#0_0_*_*_6 (At 00:00 on Saturday).
+    - cron: '0 0 * * 6'
 
 jobs:
   release:
