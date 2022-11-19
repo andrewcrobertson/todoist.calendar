@@ -1,11 +1,12 @@
 import { format } from 'date-fns';
-import { filter, join, map, orderBy, split } from 'lodash';
+import { filter, join, map, orderBy, split, uniq } from 'lodash';
 
 export class UpcomingMapper {
   public toMessage(rows: any[]) {
+    const dates = uniq(map(rows, ({ date }) => date));
     const days = [];
-    for (let i = 0; i <= rows.length; i++) {
-      const entriesFiltered = filter(rows, (r) => r.day === i);
+    for (let i = 0; i <= dates.length; i++) {
+      const entriesFiltered = filter(rows, (r) => r.date === dates[i]);
       if (entriesFiltered.length > 0) {
         const entriesMapped = map(entriesFiltered, ({ time, text }) => ({ time, text }));
         const entries = orderBy(entriesMapped, ['time', 'text']);
